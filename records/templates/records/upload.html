@@ -1,0 +1,13 @@
+{% extends 'records/sasslist.html' %}
+
+    {% block content %}
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <p>
+            <input id="id_image" type="file" class="" name="image">
+        </p>
+       <a href="{% url 'records:uploads'  %}"> <input type="submit" value="Submit" /></a>
+    </form> 
+
+
+
+    {% endblock %}

@@ -1,0 +1,95 @@
+
+{% extends 'records/sasslist.html' %}
+<div class="col-md-12">
+    {% block content %}
+    <form id="searchform" action="{% url 'records:search' %}" method="post" accept-charset="utf-8">
+        <button class="searchbutton" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+        <input class="searchfield" id="searchbox" name="name" type="text" placeholder="Search">
+        {% csrf_token %}
+      </form>
+      
+  
+    <table class='table table-responsive-sm'>
+            <caption class="text-center"  style="color: rgb(20, 20, 43)">
+                <H1>SAGARMATHA ASHAYA SEWA SANGH</H1>
+                <h2>Gokarnashwor,Kathmandu, Nepal</h2>
+            </caption>
+            
+            <thead style="width: 110%!important;background: rgb(20, 20, 43);position: relative;">
+                <tr style="color:white">
+                        <th>S.N.</th>
+                    <th>Name of Students</th>
+                    <th>Date Of Birth</th>
+                    <th>Place Of Birth</th>
+                    <th>Family Status</th>
+                    <th>Class Attended</th>
+                    <th>School Name</th>
+                    <th>Father Name</th>
+                    <th>Mother Name</th>
+                    <th>Family History</th>
+                    <td>photo</td>
+                    
+
+                </tr>
+            </thead>
+            
+                <tbody>
+                   
+                {% if srch %} 
+                    {% for lists in srch %}
+                        <a href="#" data-toggle="modal" data-target="#popupModal">
+
+                            <tr class="th_style">
+                                <td width='20px'>{{ forloop.counter }}</td>
+                                <td>
+                           {{ lists.name }}
+                            </td>
+                            <td> {{ lists.birthdate }}</td>
+                            <td> {{ lists.placeofbirth }}</td>
+                            <td>{{ lists.Family_status }}</td>
+                            <td> {{ lists.class_attend }}</td>
+                            <td> {{ lists.school }}</td>
+                            <td> {{ lists.father }}</td>
+                            <td> {{ lists.mother }}</td>
+                            <td> {{ lists.family_history }}</td>
+                            
+                            <!-- <td><img src="{{ lists.Proimage.url }}" width="50px" height="50px"></td> -->
+                      </a>       
+                                  
+
+
+                                <!-- for modals -->
+                               
+                                      
+                          
+
+
+                                <!-- end of modals -->
+                              
+                                <!-- {% for images in image %}
+                                {% if images.image %} -->
+                                    
+                                <!-- {% endif %}
+                                {% endfor %} 
+                            
+                             <!-- <td><a href="{% url 'records:delete' pk=lists.pk %}">delete</a></td>
+                            
+
+                            <td><a href="{% url 'records:edit' pk=lists.pk %}">edit</a></td>
+                             -->
+                            </tr>
+         
+                 {% endfor %}
+                 <img src="{{ image_students.image.url }}" height="50px" width="50px">
+                 </tbody>
+                 <tr>
+                     <td><a href="{% url 'records:editmode' %}">Login</a></td>
+                 </tr>
+                 
+                {% endif %}
+    </table>
+    
+    {% endblock %}
+</div>

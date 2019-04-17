@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sagarmatha Ashaya Sewa Sangh</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'STYLE/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
+<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+<style>
+  .searchfield{
+    height: 40px;
+    width: 250px;
+    
+    margin: 20px 0px 10px 10px;
+  }
+</style>
+
+
+
+  
+  <!-- <link rel="stylesheet" href="{% static 'records/css/bootstrap.min.css' %}" type="style/css"> -->
+
+</head>
+<body>
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <!-- {% for images in images %} -->
+     {% if images.image %}
+         <img src="{{ images.image.url }}" height="50px" width="50px">
+     {% endif %}
+     
+     <!-- {% endfor %} -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'records:uploads' %}"><button type="button" class="btn btn-primary">Upload</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+    
+                <div class="col-md-12">
+                    {% block content %}
+                    <form id="searchform" action="{% url 'records:search' %}" method="post" accept-charset="utf-8">
+                        
+                       <span style="float:right"> <input class="searchfield" id="searchbox" name="name" type="text" placeholder="Search" >
+                        <button class="searchbutton" type="submit">
+                            <i class="fas fa-search" style="height:14px;margin:10px;"></i>
+                          </button>
+                          <a href="{% url 'records:editmode' %}"><button type="button" class="btn btn-primary">
+                              LOGIN
+                            </button>
+                          </a></span>
+                        {% csrf_token %}
+                      </form>
+                  
+                    <table class='table table-responsive-sm'>
+                            <caption class="text-center"  style="color: rgb(20, 20, 43)">
+                                <H1>SAGARMATHA ASHAYA SEWA SANGH</H1>
+                                <h2>Gokarnashwor,Kathmandu, Nepal</h2>
+                            </caption>
+                            
+                            <thead style="width: 110%!important;background: rgb(20, 20, 43);position: relative;">
+                                <tr style="color:white">
+                                        <th>S.N.</th>
+                                    <th>Name of Students</th>
+                                    <th>Date Of Birth</th>
+                                    <th>Place Of Birth</th>
+                                    <th>Family Status</th>
+                                    <th>Class Attended</th>
+                                    <th>School Name</th>
+                                    <th>Father Name</th>
+                                    <th>Mother Name</th>
+                                    <th>Family History</th>
+                                    <th>photo</th>
+                                    
+
+                                </tr>
+                            </thead>
+                            
+                                <tbody>
+                           
+                                {% for lists in list %}
+
+                                            <tr class="th_style">
+                                                <td width='20px'>{{ forloop.counter }}</td>
+                                                <td>
+                                           {{ lists.name }}
+                                            </td>
+                                            <td> {{ lists.birthdate }}</td>
+                                            <td> {{ lists.placeofbirth }}</td>
+                                            <td>{{ lists.Family_status }}</td>
+                                            <td> {{ lists.class_attend }}</td>
+                                            <td> {{ lists.school }}</td>
+                                            <td> {{ lists.father }}</td>
+                                            <td> {{ lists.mother }}</td>
+                                            <td> {{ lists.family_history }}</td>
+                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                              Profile
+                                            </button></td>
+                                            
+                                             <!-- <td><img src="{{ lists.Proimage.url }}" width="50px" height="50px"></td> -->
+                                      </a>       
+
+                                           <!-- for modals -->
+                                               
+                                                      
+                                          
+
+
+                                                <!-- end of modals -->
+                                              
+                                               
+                                                
+                                            
+                                             <!-- <td><a href="{% url 'records:delete' pk=lists.pk %}">delete</a></td>
+                                            
+
+                                            <td><a href="{% url 'records:edit' pk=lists.pk %}">edit</a></td>
+                                             -->
+                                            </tr>
+                         
+                                 {% endfor %}
+                                 
+                                 </tbody>
+                                
+                    </table>
+                    
+                    {% endblock %}
+                </div>
+                
+    </body>
+</html>

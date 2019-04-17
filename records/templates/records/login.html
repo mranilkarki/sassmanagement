@@ -1,0 +1,54 @@
+
+ {% extends 'records/sasslist.html' %}
+ {% load crispy_forms_tags%}
+ {% block content %} 
+        <p>ehllo</p>
+        {% if form.errors %}
+             <p>your username or password is wrong</p>
+        {% endif %}
+        {% if next %}
+          {% if user.is_authenticated %}
+          <p>your account doesnot have access to it</p>
+          {% else %}
+          <p>please login to see</p>
+          {% endif %}
+          {% endif %}
+        
+           <div class="image" style="margin:9%"> 
+               
+              
+                <!-- <img class="content-image" src="C:\Users\anil karki\dynamic\home\static\images" height="200px" width="200px"> -->
+                
+                                                        
+            <form method="POST" action="{% url 'records:login' %}">
+                <fieldset class="text-center"><H1>WELCOME TO LOGIN PAGE</H1>
+                    
+                    
+                   
+                    {{ form|crispy}}
+                    {% csrf_token %}
+                    <br>
+                <!-- <p>{{form.password.label_tag }}</p><br>
+                <p>{{ form.password }}</p> -->
+                <!-- {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %} -->
+               <button type="submit">login</button>
+               
+            
+                
+                </fieldset>
+                
+         
+           
+                    
+                
+                
+            </form>
+        </div>
+        {% endblock %}
+  
+    
+
+
+   

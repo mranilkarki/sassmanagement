@@ -1,0 +1,14 @@
+body{
+    background-color: red;
+}
+.th_style:hover{
+    
+    color: white;
+    transition: linear .2s;
+
+}
+.searchfield{
+    background-color: red;
+    height: 200px;
+    width: 300px;
+}

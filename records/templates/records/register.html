@@ -1,0 +1,37 @@
+<style>
+        .myfieldclass{
+            background-color: green;
+        }
+    </style>
+{% extends 'records/sasslist.html' %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+<h1>register the students</h1>
+<div class="container-fluid">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  
+   {% for field in form %}<br><br>
+   <div class="col-sm-2"><label>{{field.label_tag}}</label></div>
+   <div class="col-sm-9">
+    {{field}}
+    </div>
+    
+    {% endfor %}
+<div class="col-sm-12">
+    <a href="{% url 'records:NameOfStudents' %}"><button type="submit">register</button></a>
+    <a href="{% url 'records:NameOfStudents' %}"><button type="button">Cancel</button></a>
+    
+</div>
+
+
+   
+</form>
+<div class="col-sm-12">
+    <br><br>
+    
+</div>
+
+
+{% endblock %}
